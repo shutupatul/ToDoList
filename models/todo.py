@@ -11,7 +11,7 @@ class ToDo(BaseModel):
     created_at: datetime = datetime.now()
 
 
-#Model for updating a task in ToDO
+#Model for updating a task in ToDo
 
 class Update(BaseModel):
     title: Optional[str] = None

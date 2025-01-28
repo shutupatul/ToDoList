@@ -27,15 +27,6 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 def str_to_object(id: str) -> ObjectId:
     return ObjectId(id)
 
-# Authentication-related endpoints
-@router.post("/auth/login")
-async def login(username: str, password: str):
-    # Simulating user check (add database validation here for real app)
-    if username == "testuser" and password == "password123":  # Replace with real user validation
-        token = create_access_token(username)
-        return {"access_token": token, "token_type": "bearer"}
-    raise HTTPException(status_code=401, detail="Invalid credentials")
-
 # Create new task ("C"RUD) (Protected)
 @router.post("/tasks/", dependencies=[Depends(JWTBearer())], response_model=ToDo)
 async def create_task(task: ToDo):
